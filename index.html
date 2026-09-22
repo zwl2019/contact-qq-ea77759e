@@ -3,8 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>联系客服</title>
+  <meta name="theme-color" content="#f4f8ff">
+  <title>售后服务</title>
+
   <style>
+    :root {
+      --primary: #4f7cff;
+      --primary-dark: #3867ee;
+      --wechat: #07c160;
+      --text-main: #1f2937;
+      --text-secondary: #64748b;
+      --border: rgba(148, 163, 184, 0.18);
+      --card-bg: rgba(255, 255, 255, 0.88);
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -12,40 +24,419 @@
     body {
       margin: 0;
       min-height: 100vh;
+      padding: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: "Microsoft YaHei", Arial, sans-serif;
-      background: linear-gradient(135deg, #e8f3ff, #f5f7fa);
+      overflow-x: hidden;
+      font-family:
+        "PingFang SC",
+        "Microsoft YaHei",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 15% 20%, #dce8ff 0, transparent 32%),
+        radial-gradient(circle at 85% 80%, #d9f8e8 0, transparent 30%),
+        linear-gradient(135deg, #f6f9ff 0%, #eef4ff 50%, #f5fffa 100%);
     }
 
-    .contact-card {
-      padding: 40px 60px;
+    /* 背景装饰 */
+    .decoration {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(4px);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .decoration-one {
+      top: 8%;
+      left: 8%;
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(135deg, #9bb9ff, #d7e3ff);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .decoration-two {
+      right: 8%;
+      bottom: 10%;
+      width: 130px;
+      height: 130px;
+      background: linear-gradient(135deg, #a7ebc7, #dcf8e9);
+      animation: float 7s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .card {
+      padding: 42px 38px 34px;
       text-align: center;
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 28px;
+      box-shadow:
+        0 24px 70px rgba(53, 80, 130, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
-    .contact-card h1 {
-      margin: 0 0 20px;
-      color: #333333;
-      font-size: 28px;
+    .icon-box {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      background: linear-gradient(135deg, #5c87ff, #416ff2);
+      border-radius: 24px;
+      box-shadow: 0 14px 30px rgba(79, 124, 255, 0.3);
+      transform: rotate(-3deg);
     }
 
-    .qq-number {
+    .icon-box svg {
+      width: 38px;
+      height: 38px;
+      transform: rotate(3deg);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin: 0 0 28px;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    .notice {
+      position: relative;
+      margin-bottom: 24px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      text-align: left;
+      background: linear-gradient(135deg, #f8faff, #f4f7ff);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .notice-icon {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      background: #e7eeff;
+      border-radius: 11px;
+    }
+
+    .notice-icon svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .notice-content h2 {
+      margin: 0 0 7px;
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    .notice-content p {
       margin: 0;
-      color: #1677ff;
-      font-size: 24px;
-      font-weight: bold;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .wechat-card {
+      padding: 22px;
+      background: linear-gradient(
+        135deg,
+        rgba(7, 193, 96, 0.08),
+        rgba(7, 193, 96, 0.03)
+      );
+      border: 1px solid rgba(7, 193, 96, 0.18);
+      border-radius: 20px;
+    }
+
+    .wechat-label {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #43805d;
+      font-size: 14px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--wechat);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(7, 193, 96, 0.1);
+    }
+
+    .wechat-id {
+      margin-bottom: 18px;
+      color: #15231b;
+      font-size: 28px;
+      font-weight: 750;
+      letter-spacing: 1px;
+      word-break: break-all;
       user-select: all;
+    }
+
+    .copy-button {
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      color: #ffffff;
+      font: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #13ca6a, #07b75a);
+      border: none;
+      border-radius: 14px;
+      box-shadow: 0 10px 22px rgba(7, 193, 96, 0.22);
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .copy-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(7, 193, 96, 0.28);
+    }
+
+    .copy-button:active {
+      transform: translateY(0);
+    }
+
+    .copy-button:focus-visible {
+      outline: 3px solid rgba(7, 193, 96, 0.25);
+      outline-offset: 3px;
+    }
+
+    .copy-button svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .tips {
+      margin: 18px 0 0;
+      color: #94a3b8;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 36px;
+      z-index: 10;
+      padding: 12px 22px;
+      color: #ffffff;
+      font-size: 14px;
+      background: rgba(24, 34, 29, 0.9);
+      border-radius: 100px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 20px);
+      transition: 0.3s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 16px;
+      }
+
+      .card {
+        padding: 32px 20px 26px;
+        border-radius: 24px;
+      }
+
+      .icon-box {
+        width: 68px;
+        height: 68px;
+        border-radius: 21px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .notice {
+        padding: 17px;
+      }
+
+      .wechat-card {
+        padding: 19px 16px;
+      }
+
+      .wechat-id {
+        font-size: 25px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <main class="contact-card">
-    <h1>联系客服</h1>
-    <p class="qq-number">客服QQ：1525872150</p>
+  <div class="decoration decoration-one"></div>
+  <div class="decoration decoration-two"></div>
+
+  <main class="container">
+    <section class="card">
+      <div class="icon-box">
+        <!-- 客服图标 -->
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+          <path d="M8 10h.01"/>
+          <path d="M12 10h.01"/>
+          <path d="M16 10h.01"/>
+        </svg>
+      </div>
+
+      <h1>售后服务</h1>
+      <p class="subtitle">我们将竭诚为您提供帮助</p>
+
+      <div class="notice">
+        <div class="notice-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 8v4"/>
+            <path d="M12 16h.01"/>
+          </svg>
+        </div>
+
+        <div class="notice-content">
+          <h2>温馨提示</h2>
+          <p>
+            因为淘宝相关海外业务咨询会有违规风险，麻烦亲联系售后微信。
+          </p>
+        </div>
+      </div>
+
+      <div class="wechat-card">
+        <div class="wechat-label">
+          <span class="status-dot"></span>
+          售后微信
+        </div>
+
+        <div class="wechat-id" id="wechatId">win565329</div>
+
+        <button class="copy-button" id="copyButton" type="button">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="9" y="9" width="11" height="11" rx="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <span id="buttonText">复制微信号</span>
+        </button>
+      </div>
+
+      <p class="tips">点击按钮复制微信号，然后打开微信添加好友</p>
+    </section>
   </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    微信号已复制
+  </div>
+
+  <script>
+    const wechatId = "win565329";
+    const copyButton = document.getElementById("copyButton");
+    const buttonText = document.getElementById("buttonText");
+    const toast = document.getElementById("toast");
+
+    let toastTimer;
+
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(wechatId);
+      } catch (error) {
+        const input = document.createElement("textarea");
+        input.value = wechatId;
+        input.style.position = "fixed";
+        input.style.opacity = "0";
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+      }
+
+      buttonText.textContent = "复制成功";
+      toast.classList.add("show");
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        buttonText.textContent = "复制微信号";
+        toast.classList.remove("show");
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
