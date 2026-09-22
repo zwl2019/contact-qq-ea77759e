@@ -3,32 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f4f8ff">
-  <title>售后服务</title>
+  <meta name="theme-color" content="#f3f7ff">
+  <title>海外业务咨询</title>
 
   <style>
     :root {
       --primary: #4f7cff;
-      --primary-dark: #3867ee;
+      --primary-dark: #3868ed;
       --wechat: #07c160;
-      --text-main: #1f2937;
-      --text-secondary: #64748b;
-      --border: rgba(148, 163, 184, 0.18);
-      --card-bg: rgba(255, 255, 255, 0.88);
+      --wechat-dark: #06ad56;
+      --title: #182033;
+      --text: #59667c;
+      --muted: #929daf;
+      --line: rgba(108, 128, 165, 0.14);
+      --card: rgba(255, 255, 255, 0.92);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow-x: hidden;
+      padding: 32px 20px 110px;
+      color: var(--title);
       font-family:
         "PingFang SC",
         "Microsoft YaHei",
@@ -36,164 +40,172 @@
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
-      color: var(--text-main);
       background:
-        radial-gradient(circle at 15% 20%, #dce8ff 0, transparent 32%),
-        radial-gradient(circle at 85% 80%, #d9f8e8 0, transparent 30%),
-        linear-gradient(135deg, #f6f9ff 0%, #eef4ff 50%, #f5fffa 100%);
+        radial-gradient(circle at 10% 8%, #dce8ff 0, transparent 32%),
+        radial-gradient(circle at 90% 90%, #d8f8e7 0, transparent 30%),
+        linear-gradient(135deg, #f8faff 0%, #eef4ff 50%, #f5fffa 100%);
     }
 
-    /* 背景装饰 */
-    .decoration {
+    button {
+      font: inherit;
+    }
+
+    .background-shape {
       position: fixed;
+      z-index: 0;
       border-radius: 50%;
-      filter: blur(4px);
       pointer-events: none;
-      opacity: 0.6;
+      opacity: 0.55;
+      filter: blur(3px);
     }
 
-    .decoration-one {
+    .shape-one {
       top: 8%;
-      left: 8%;
-      width: 90px;
-      height: 90px;
-      background: linear-gradient(135deg, #9bb9ff, #d7e3ff);
-      animation: float 6s ease-in-out infinite;
+      left: 6%;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #a2bdff, #dce7ff);
+      animation: float 7s ease-in-out infinite;
     }
 
-    .decoration-two {
-      right: 8%;
-      bottom: 10%;
-      width: 130px;
-      height: 130px;
-      background: linear-gradient(135deg, #a7ebc7, #dcf8e9);
-      animation: float 7s ease-in-out infinite reverse;
+    .shape-two {
+      right: 5%;
+      bottom: 8%;
+      width: 140px;
+      height: 140px;
+      background: linear-gradient(135deg, #a9edca, #dcf8e9);
+      animation: float 8s ease-in-out infinite reverse;
     }
 
     @keyframes float {
       0%, 100% {
         transform: translateY(0);
       }
+
       50% {
-        transform: translateY(-15px);
+        transform: translateY(-14px);
       }
     }
 
-    .container {
+    .page-container {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 560px;
+      max-width: 620px;
+      margin: 0 auto;
     }
 
-    .card {
-      padding: 42px 38px 34px;
-      text-align: center;
-      background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      border-radius: 28px;
+    .service-card {
+      padding: 40px 36px 32px;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 30px;
       box-shadow:
-        0 24px 70px rgba(53, 80, 130, 0.14),
+        0 25px 75px rgba(53, 79, 128, 0.14),
         inset 0 1px 0 rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
     }
 
-    .icon-box {
-      width: 76px;
-      height: 76px;
-      margin: 0 auto 22px;
+    /* 页面标题 */
+    .header {
+      text-align: center;
+    }
+
+    .service-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #ffffff;
-      background: linear-gradient(135deg, #5c87ff, #416ff2);
-      border-radius: 24px;
-      box-shadow: 0 14px 30px rgba(79, 124, 255, 0.3);
-      transform: rotate(-3deg);
+      color: #fff;
+      background: linear-gradient(135deg, #668fff, #416ef0);
+      border-radius: 23px;
+      box-shadow: 0 14px 30px rgba(79, 124, 255, 0.28);
     }
 
-    .icon-box svg {
-      width: 38px;
-      height: 38px;
-      transform: rotate(3deg);
+    .service-icon svg {
+      width: 36px;
+      height: 36px;
     }
 
     h1 {
-      margin: 0 0 10px;
+      margin: 0 0 9px;
       font-size: 30px;
-      font-weight: 700;
+      font-weight: 750;
       letter-spacing: 1px;
     }
 
     .subtitle {
-      margin: 0 0 28px;
-      color: var(--text-secondary);
+      margin: 0 0 26px;
+      color: var(--muted);
       font-size: 15px;
     }
 
+    /* 温馨提示 */
     .notice {
-      position: relative;
       margin-bottom: 24px;
-      padding: 20px 22px;
+      padding: 19px;
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      text-align: left;
-      background: linear-gradient(135deg, #f8faff, #f4f7ff);
-      border: 1px solid var(--border);
+      gap: 13px;
+      background: linear-gradient(135deg, #f8faff, #f2f6ff);
+      border: 1px solid var(--line);
       border-radius: 18px;
     }
 
     .notice-icon {
-      width: 34px;
-      height: 34px;
-      flex: 0 0 34px;
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--primary);
-      background: #e7eeff;
-      border-radius: 11px;
+      background: #e5edff;
+      border-radius: 12px;
     }
 
     .notice-icon svg {
-      width: 19px;
-      height: 19px;
+      width: 20px;
+      height: 20px;
     }
 
-    .notice-content h2 {
-      margin: 0 0 7px;
+    .notice h2 {
+      margin: 0 0 6px;
       font-size: 16px;
-      font-weight: 650;
     }
 
-    .notice-content p {
+    .notice p {
       margin: 0;
-      color: var(--text-secondary);
+      color: var(--text);
       font-size: 14px;
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
-    .wechat-card {
+    /* 二维码区域 */
+    .qr-section {
       padding: 22px;
+      text-align: center;
       background: linear-gradient(
         135deg,
         rgba(7, 193, 96, 0.08),
-        rgba(7, 193, 96, 0.03)
+        rgba(7, 193, 96, 0.025)
       );
-      border: 1px solid rgba(7, 193, 96, 0.18);
-      border-radius: 20px;
+      border: 1px solid rgba(7, 193, 96, 0.16);
+      border-radius: 22px;
     }
 
-    .wechat-label {
-      margin-bottom: 12px;
+    .qr-title {
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      color: #43805d;
-      font-size: 14px;
+      gap: 9px;
+      color: #387b55;
+      font-size: 15px;
+      font-weight: 650;
     }
 
     .status-dot {
@@ -204,79 +216,286 @@
       box-shadow: 0 0 0 5px rgba(7, 193, 96, 0.1);
     }
 
+    .qr-description {
+      margin: 0 0 17px;
+      color: #82908a;
+      font-size: 13px;
+    }
+
+    .qr-image-box {
+      width: 100%;
+      max-width: 350px;
+      margin: 0 auto 18px;
+      padding: 8px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(7, 193, 96, 0.12);
+      border-radius: 20px;
+      box-shadow: 0 13px 35px rgba(31, 77, 51, 0.1);
+      cursor: zoom-in;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .qr-image-box:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 17px 40px rgba(31, 77, 51, 0.15);
+    }
+
+    .qr-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+    }
+
     .wechat-id {
-      margin-bottom: 18px;
-      color: #15231b;
-      font-size: 28px;
+      margin: 0 0 16px;
+      color: #1d2d24;
+      font-size: 23px;
       font-weight: 750;
-      letter-spacing: 1px;
-      word-break: break-all;
+    }
+
+    .wechat-id span {
+      color: var(--wechat-dark);
+      letter-spacing: 0.7px;
       user-select: all;
     }
 
-    .copy-button {
-      width: 100%;
+    .button-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .action-button {
       min-height: 50px;
-      padding: 12px 20px;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
-      color: #ffffff;
-      font: inherit;
-      font-size: 16px;
-      font-weight: 600;
-      background: linear-gradient(135deg, #13ca6a, #07b75a);
-      border: none;
+      gap: 8px;
+      border: 0;
       border-radius: 14px;
-      box-shadow: 0 10px 22px rgba(7, 193, 96, 0.22);
       cursor: pointer;
+      font-size: 15px;
+      font-weight: 650;
       transition:
         transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
+        box-shadow 0.2s ease;
     }
 
-    .copy-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 28px rgba(7, 193, 96, 0.28);
-    }
-
-    .copy-button:active {
-      transform: translateY(0);
-    }
-
-    .copy-button:focus-visible {
-      outline: 3px solid rgba(7, 193, 96, 0.25);
-      outline-offset: 3px;
-    }
-
-    .copy-button svg {
+    .action-button svg {
       width: 19px;
       height: 19px;
     }
 
-    .tips {
-      margin: 18px 0 0;
-      color: #94a3b8;
-      font-size: 13px;
-      line-height: 1.6;
+    .copy-button {
+      color: #fff;
+      background: linear-gradient(135deg, #15ca6c, #07b65a);
+      box-shadow: 0 10px 22px rgba(7, 193, 96, 0.22);
     }
 
+    .view-button {
+      color: #367950;
+      background: #fff;
+      border: 1px solid rgba(7, 193, 96, 0.2);
+      box-shadow: 0 8px 20px rgba(41, 86, 59, 0.07);
+    }
+
+    .action-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .action-button:active {
+      transform: translateY(0);
+    }
+
+    /* 添加步骤 */
+    .steps-section {
+      margin-top: 25px;
+    }
+
+    .steps-title {
+      margin: 0 0 16px;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .step {
+      padding: 16px 8px;
+      text-align: center;
+      background: #f8faff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .step-number {
+      width: 29px;
+      height: 29px;
+      margin: 0 auto 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      background: #e7eeff;
+      border-radius: 10px;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* 手机端底部悬浮栏 */
+    .bottom-bar {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      left: 14px;
+      z-index: 20;
+      max-width: 590px;
+      margin: 0 auto;
+      padding: 10px;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 19px;
+      box-shadow: 0 14px 40px rgba(29, 47, 82, 0.2);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .bottom-info {
+      min-width: 0;
+      flex: 1;
+      padding-left: 5px;
+    }
+
+    .bottom-info small {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--muted);
+    }
+
+    .bottom-info strong {
+      display: block;
+      overflow: hidden;
+      color: var(--title);
+      font-size: 15px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .bottom-copy {
+      min-height: 45px;
+      padding: 0 19px;
+      color: #fff;
+      font-weight: 650;
+      background: linear-gradient(135deg, #15ca6c, #07b65a);
+      border: 0;
+      border-radius: 13px;
+      cursor: pointer;
+    }
+
+    /* 放大二维码弹窗 */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+    }
+
+    .modal.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      padding: 10px;
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+      transform: scale(0.94);
+      transition: transform 0.25s ease;
+    }
+
+    .modal.show .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-image {
+      width: 100%;
+      max-height: 82vh;
+      display: block;
+      object-fit: contain;
+      border-radius: 15px;
+    }
+
+    .close-button {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 38px;
+      height: 38px;
+      color: #fff;
+      font-size: 22px;
+      line-height: 1;
+      background: #172033;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+    }
+
+    /* 复制成功提示 */
     .toast {
       position: fixed;
       left: 50%;
-      bottom: 36px;
-      z-index: 10;
+      bottom: 90px;
+      z-index: 200;
       padding: 12px 22px;
-      color: #ffffff;
+      color: #fff;
       font-size: 14px;
-      background: rgba(24, 34, 29, 0.9);
+      white-space: nowrap;
+      background: rgba(20, 33, 26, 0.93);
       border-radius: 100px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
       opacity: 0;
       pointer-events: none;
-      transform: translate(-50%, 20px);
+      transform: translate(-50%, 18px);
       transition: 0.3s ease;
     }
 
@@ -287,18 +506,18 @@
 
     @media (max-width: 600px) {
       body {
-        padding: 16px;
+        padding: 16px 14px 105px;
       }
 
-      .card {
-        padding: 32px 20px 26px;
+      .service-card {
+        padding: 30px 18px 25px;
         border-radius: 24px;
       }
 
-      .icon-box {
-        width: 68px;
-        height: 68px;
-        border-radius: 21px;
+      .service-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 20px;
       }
 
       h1 {
@@ -306,46 +525,85 @@
       }
 
       .notice {
-        padding: 17px;
+        padding: 17px 15px;
       }
 
-      .wechat-card {
-        padding: 19px 16px;
+      .qr-section {
+        padding: 19px 14px;
       }
 
-      .wechat-id {
-        font-size: 25px;
+      .qr-image-box {
+        max-width: 315px;
+      }
+
+      .button-group {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        gap: 7px;
+      }
+
+      .step {
+        padding: 14px 5px;
+      }
+
+      .step span {
+        font-size: 11px;
+      }
+
+      .bottom-bar {
+        display: flex;
+      }
+
+      .shape-one {
+        left: -40px;
+      }
+
+      .shape-two {
+        right: -50px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="decoration decoration-one"></div>
-  <div class="decoration decoration-two"></div>
+  <div class="background-shape shape-one"></div>
+  <div class="background-shape shape-two"></div>
 
-  <main class="container">
-    <section class="card">
-      <div class="icon-box">
-        <!-- 客服图标 -->
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
-          <path d="M8 10h.01"/>
-          <path d="M12 10h.01"/>
-          <path d="M16 10h.01"/>
-        </svg>
-      </div>
+  <main class="page-container">
+    <section class="service-card">
+      <header class="header">
+        <div class="service-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+            <path d="M8 10h.01"/>
+            <path d="M12 10h.01"/>
+            <path d="M16 10h.01"/>
+          </svg>
+        </div>
 
-      <h1>售后服务</h1>
-      <p class="subtitle">我们将竭诚为您提供帮助</p>
+        <h1>海外业务咨询</h1>
+        <p class="subtitle">售后顾问为您提供持续咨询服务</p>
+      </header>
 
       <div class="notice">
         <div class="notice-icon">
@@ -364,42 +622,146 @@
           </svg>
         </div>
 
-        <div class="notice-content">
+        <div>
           <h2>温馨提示</h2>
           <p>
-            因为淘宝相关海外业务咨询会有违规风险，麻烦亲联系售后微信。
+            部分海外业务咨询内容较为复杂，为便于持续跟进，请添加售后顾问微信。
           </p>
         </div>
       </div>
 
-      <div class="wechat-card">
-        <div class="wechat-label">
+      <section class="qr-section">
+        <div class="qr-title">
           <span class="status-dot"></span>
-          售后微信
+          扫码添加售后顾问
         </div>
 
-        <div class="wechat-id" id="wechatId">win565329</div>
+        <p class="qr-description">
+          长按二维码识别，或点击图片放大查看
+        </p>
 
-        <button class="copy-button" id="copyButton" type="button">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
+        <div
+          class="qr-image-box"
+          id="qrImageBox"
+          role="button"
+          tabindex="0"
+          aria-label="放大查看微信二维码"
+        >
+          <!--
+            正式部署推荐下载图片并修改为：
+            src="./wechat-qr.jpg"
+          -->
+          <img
+            class="qr-image"
+            src="./wechat-qr.png"
+            alt="售后顾问微信二维码"
           >
-            <rect x="9" y="9" width="11" height="11" rx="2"/>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-          </svg>
-          <span id="buttonText">复制微信号</span>
-        </button>
-      </div>
+        </div>
 
-      <p class="tips">点击按钮复制微信号，然后打开微信添加好友</p>
+        <p class="wechat-id">
+          微信：<span>win565329</span>
+        </p>
+
+        <div class="button-group">
+          <button class="action-button copy-button copy-trigger" type="button">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="9" y="9" width="11" height="11" rx="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>复制微信号</span>
+          </button>
+
+          <button class="action-button view-button" id="viewQrButton" type="button">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7"/>
+              <path d="m20 20-4-4"/>
+              <path d="M11 8v6"/>
+              <path d="M8 11h6"/>
+            </svg>
+            <span>放大二维码</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="steps-section">
+        <h2 class="steps-title">添加步骤</h2>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">01</div>
+            <strong>长按识别</strong>
+            <span>识别页面二维码</span>
+          </div>
+
+          <div class="step">
+            <div class="step-number">02</div>
+            <strong>添加好友</strong>
+            <span>进入微信添加页面</span>
+          </div>
+
+          <div class="step">
+            <div class="step-number">03</div>
+            <strong>发起咨询</strong>
+            <span>说明需要咨询的问题</span>
+          </div>
+        </div>
+      </section>
     </section>
   </main>
+
+  <!-- 手机端底部悬浮按钮 -->
+  <div class="bottom-bar">
+    <div class="bottom-info">
+      <small>售后顾问微信</small>
+      <strong>win565329</strong>
+    </div>
+
+    <button class="bottom-copy copy-trigger" type="button">
+      复制微信号
+    </button>
+  </div>
+
+  <!-- 二维码放大弹窗 -->
+  <div
+    class="modal"
+    id="qrModal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="微信二维码"
+  >
+    <div class="modal-content">
+      <button
+        class="close-button"
+        id="closeModalButton"
+        type="button"
+        aria-label="关闭二维码"
+      >
+        ×
+      </button>
+
+      <img
+        class="modal-image"
+        src="./wechat-qr.png"
+        alt="售后顾问微信二维码大图"
+      >
+    </div>
+  </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite">
     微信号已复制
@@ -407,35 +769,83 @@
 
   <script>
     const wechatId = "win565329";
-    const copyButton = document.getElementById("copyButton");
-    const buttonText = document.getElementById("buttonText");
+
+    const copyButtons = document.querySelectorAll(".copy-trigger");
+    const qrImageBox = document.getElementById("qrImageBox");
+    const viewQrButton = document.getElementById("viewQrButton");
+    const qrModal = document.getElementById("qrModal");
+    const closeModalButton = document.getElementById("closeModalButton");
     const toast = document.getElementById("toast");
 
     let toastTimer;
 
-    copyButton.addEventListener("click", async () => {
+    async function copyWechatId() {
       try {
         await navigator.clipboard.writeText(wechatId);
       } catch (error) {
-        const input = document.createElement("textarea");
-        input.value = wechatId;
-        input.style.position = "fixed";
-        input.style.opacity = "0";
-        document.body.appendChild(input);
-        input.select();
+        const textarea = document.createElement("textarea");
+
+        textarea.value = wechatId;
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        textarea.style.opacity = "0";
+
+        document.body.appendChild(textarea);
+        textarea.select();
         document.execCommand("copy");
-        input.remove();
+        textarea.remove();
       }
 
-      buttonText.textContent = "复制成功";
+      showToast("微信号已复制：" + wechatId);
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
       toast.classList.add("show");
 
       clearTimeout(toastTimer);
 
-      toastTimer = setTimeout(() => {
-        buttonText.textContent = "复制微信号";
+      toastTimer = setTimeout(function () {
         toast.classList.remove("show");
-      }, 2000);
+      }, 2200);
+    }
+
+    function openQrModal() {
+      qrModal.classList.add("show");
+      document.body.style.overflow = "hidden";
+      closeModalButton.focus();
+    }
+
+    function closeQrModal() {
+      qrModal.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    copyButtons.forEach(function (button) {
+      button.addEventListener("click", copyWechatId);
+    });
+
+    qrImageBox.addEventListener("click", openQrModal);
+    viewQrButton.addEventListener("click", openQrModal);
+    closeModalButton.addEventListener("click", closeQrModal);
+
+    qrImageBox.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openQrModal();
+      }
+    });
+
+    qrModal.addEventListener("click", function (event) {
+      if (event.target === qrModal) {
+        closeQrModal();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && qrModal.classList.contains("show")) {
+        closeQrModal();
+      }
     });
   </script>
 </body>
